@@ -5,3 +5,41 @@
 .tabsbtn {
     @apply text-[#7D7D7D] border-b border-[#7D7D7D] px-6 py-2 active:text-white
 }
+
+.checkbox-wrapper-15 .cbx {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    
+  }
+  .checkbox-wrapper-15 .cbx span {
+    @apply inline-block align-middle;
+    transform: translate3d(0, 0, 0);
+  }
+  .checkbox-wrapper-15 .cbx span:first-child {
+    @apply relative w-8 h-8 rounded-[50%] scale-100 align-middle border border-[#B9B8C3] transition-all ease-in duration-200;
+  }
+  .checkbox-wrapper-15 .cbx span:first-child svg {
+    @apply absolute z-10 top-1/3 left-1/3 fill-none stroke-white stroke-2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 24px;
+    stroke-dashoffset: 24px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .checkbox-wrapper-15 .cbx:hover span:first-child {
+    border-color: green;
+  }
+
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child {
+    border-color: green;
+    background: green;
+    animation: check-15 0.6s ease;
+  }
+  .checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+  }

@@ -1,0 +1,67 @@
+.checkbox-wrapper-15 .cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.checkbox-wrapper-15 .cbx span {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  transform: translate3d(0, 0, 0);
+}
+
+.checkbox-wrapper-15 .cbx span:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; /* Taille ajustée pour un meilleur centrage */
+  height: 48px; /* Taille ajustée */
+  border-radius: 50%;
+  border: 2px solid #B9B8C3;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox-wrapper-15 .cbx span:first-child svg {
+  display: block;
+  position: relative;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24px;
+  stroke-dashoffset: 24px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+}
+
+.checkbox-wrapper-15 .cbx:hover span:first-child {
+  border-color: green;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child {
+  border-color: green;
+  background-color: green;
+  animation: check-15 0.6s ease;
+}
+
+.checkbox-wrapper-15 .inp-cbx:checked + .cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.checkbox-wrapper-15 .cbx span:first-child svg polyline {
+  transform-origin: center;
+}
+
+<div class="checkbox-wrapper-15 inline-block align-middle">
+            <input class="inp-cbx hidden" id="cbx-15" type="checkbox" />
+            <label class="cbx" for="cbx-15">
+              <span>
+                <svg width="24px" height="18px" viewBox="0 0 12 9">
+                  <polyline points="1 5 4 8 11 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
