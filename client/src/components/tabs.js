@@ -38,8 +38,11 @@ const Tabs = () => {
     return sortedtasks;
   };
   return (
-    <div className="mx-7 flex flex-col justify-center mt-6 gap-3">
-      <h2 className="text-white text-2xl font-semibold">Tasks</h2>
+    <div className="flex flex-col justify-center mt-6 gap-3">
+<div className="py-4 gap-2 flex flex-col">
+<h2 className="text-white text-2xl font-semibold">Tasks</h2>
+<div className="w-full h-[1px] bg-white"></div>
+</div>
       <div className="flex text-white justify-center gap-2">
         <button
           className={`tabsbtn rounded-l-md ${

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .tabsbtn {
-    @apply text-[#7D7D7D] border-b border-[#7D7D7D] px-6 py-2 active:text-white
+    @apply text-[#7D7D7D] border-b border-[#7D7D7D] px-6 py-2 active:text-white focus:text-white focus:border-white transition-all  focus:scale-105
 }
 
 .checkbox-wrapper-15 .cbx {
