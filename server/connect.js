@@ -13,4 +13,4 @@ connect.connect(function (err) {
   else console.log("database connected succesfully !");
 });
 
-module.export = { connect };
+module.exports = { connect };
