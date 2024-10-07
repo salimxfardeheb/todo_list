@@ -40,6 +40,7 @@ app.post("/send-data", (req, res) => {
     }
     res.status(200).send("data inserted succesfully");
   });
+  console.log(`task "${task}" added correctly`);
 });
 
 app.post("/delete-data", (req, res) => {
@@ -54,6 +55,7 @@ app.post("/delete-data", (req, res) => {
       res.status(200).send("data deleted succesfully !");
     }
   });
+  console.log("task deletd ! "); 
 });
 
 app.post("/update-data", (req, res) => {
@@ -69,6 +71,7 @@ app.post("/update-data", (req, res) => {
       res.status(200).send("data updated succesfully !");
     }
   });
+  console.log("data updatet succesfully");
 });
 
 app.get("/data", (req, res) => {
