@@ -1,15 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
-const addtask = () => {
+const Addtask = () => {
+  const [value, setValue] = useState("");
+
+  const send_data = (e) => {
+    e.preventDefault();
+    if (value.trim()) {
+      setValue("");
+      axios
+        .post("http://localhost:3001/send-data", { task: value })
+        .then(() => {
+          console.log("sucess !");
+        })
+        .catch(() => {
+          console.log("error sending data !");
+        });
+    }
+  };
+
   return (
     <div className="flex justify-center mt-24">
       <form className="flex gap-2 w-full justify-center lg:mx-7">
         <input
           type="text"
+          value={value}
           placeholder="Add new task"
+          onChange={(e) => setValue(e.target.value)}
           className="px-2 rounded-l-md max-w-56 lg:max-w-full lg:w-full placeholder:font-bold lg:p-3"
         />
-        <button className="text-white font-bold gap-3 flex justify-center items-center px-8 py-1 bg-[#3C5E92] rounded-r-md hover:opacity-85">
+        <button
+          onClick={send_data}
+          className="text-white font-bold gap-3 flex justify-center items-center px-8 py-1 bg-[#3C5E92] rounded-r-md hover:opacity-85"
+        >
           <svg
             className="w-4 lg:w-7"
             xmlns="http://www.w3.org/2000/svg"
@@ -28,4 +51,4 @@ const addtask = () => {
   );
 };
 
-export default addtask;
+export default Addtask;
