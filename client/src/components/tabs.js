@@ -1,48 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 
-const tasksExpl = [
-  {
-    id: 1,
-    title: "learn node js",
-    completed: false,
-  },
-  {
-    id: 2,
-    title: "learn react js",
-    completed: true,
-  },
-  {
-    id: 3,
-    title: "learn git",
-    completed: false,
-  },
-];
-
 const Tabs = () => {
-  const [tasks, setTasks] = useState(tasksExpl);
+  const [tasks, setTasks] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
+
+  // get data from server
+  useEffect(() => {
+    fetch("http://localhost:3001/data")
+      .then((res) => res.json())
+      .then((data) => setTasks(data));
+  }, []);
 
   const sortedtasks = [...tasks].sort((a, b) => a.completed - b.completed);
 
   const toggleCompletion = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id == id ? { ...task, completed: !task.completed } : task
+        task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
   const filteredTasks = () => {
-    if (activeTab === "done") return sortedtasks.filter((task) => task.completed);
-    if (activeTab === "todos") return sortedtasks.filter((task) => !task.completed);
+    if (activeTab === "done")
+      return sortedtasks.filter((task) => task.completed);
+    if (activeTab === "todos")
+      return sortedtasks.filter((task) => !task.completed);
     return sortedtasks;
   };
   return (
     <div className="flex flex-col justify-center mt-6 gap-3">
-<div className="py-4 gap-2 flex flex-col">
-<h2 className="text-white text-2xl font-semibold">Tasks</h2>
-<div className="w-full h-[1px] bg-white"></div>
-</div>
+      <div className="py-4 gap-2 flex flex-col">
+        <h2 className="text-white text-2xl font-semibold">Tasks</h2>
+        <div className="w-full h-[1px] bg-white"></div>
+      </div>
       <div className="flex text-white justify-center gap-2">
         <button
           className={`tabsbtn rounded-l-md ${
@@ -92,7 +83,7 @@ const Tabs = () => {
               </label>
             </div>
             <div className="bg-white rounded-md w-full px-3 py-1">
-              <p className="text-xl font-semibold">{task.title}</p>
+              <p className="text-xl font-semibold">{task.description}</p>
             </div>
             <div className="bg-red-700 p-2 rounded-full">
               <MdDelete className="text-white text-2xl" />
