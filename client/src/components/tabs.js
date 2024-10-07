@@ -25,6 +25,17 @@ const Tabs = () => {
         console.log("error executng request");
       });
   };
+
+  const update_data = (completed, id) => {
+    axios
+      .post("http://localhost:3001/update-data", { completed, id })
+      .then(() => {
+        console.log("success !");
+      })
+      .catch(() => {
+        console.log("error executng request");
+      });
+  };
   const toggleCompletion = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -75,7 +86,9 @@ const Tabs = () => {
             className="flex gap-6 items-center justify-around mx-6 py-4"
             key={task.id}
           >
-            <div className="checkbox-wrapper-15">
+            <div 
+            onClick={update_data(task.completed,task.id)}
+            className="checkbox-wrapper-15">
               <input
                 className="inp-cbx hidden"
                 id={task.id}
@@ -96,9 +109,12 @@ const Tabs = () => {
             <div className="bg-white rounded-md w-full px-3 py-1">
               <p className="text-xl font-semibold">{task.description}</p>
             </div>
-            <button 
-            onClick={()=> {delete_data(task.id)}}
-            className="bg-red-700 hover:bg-red-600 p-2 rounded-full flex text-white gap-3">
+            <button
+              onClick={() => {
+                delete_data(task.id);
+              }}
+              className="bg-red-700 hover:bg-red-600 p-2 rounded-full flex text-white gap-3"
+            >
               <span className="hidden lg:block">delete</span>
               <MdDelete className="text-white text-2xl" />
             </button>

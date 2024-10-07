@@ -56,6 +56,21 @@ app.post("/delete-data", (req, res) => {
   });
 });
 
+app.post("/update-data", (req, res) => {
+  const { id, completed } = req.body;
+  const request = `update tasks set completed = ? where id =?`;
+
+  conn.connect.query(request, [completed, id], (err, result) => {
+    if (err) {
+      console.log("error :", err);
+      res.status(500).send("error updating data");
+    } else {
+      fetchData();
+      res.status(200).send("data updated succesfully !");
+    }
+  });
+});
+
 app.get("/data", (req, res) => {
   res.json(data);
 });
