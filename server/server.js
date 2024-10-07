@@ -26,7 +26,6 @@ const fetchData = () => {
     data = results;
   });
 };
-
 fetchData();
 
 app.post("/send-data", (req, res) => {
@@ -40,6 +39,20 @@ app.post("/send-data", (req, res) => {
       res.status(500).send("error inserting data ");
     }
     res.status(200).send("data inserted succesfully");
+  });
+});
+
+app.post("/delete-data", (req, res) => {
+  const { id } = req.body;
+  const request = `delete from tasks where id = ?;`;
+  conn.connect.query(request, [id], (err, result) => {
+    if (err) {
+      console.log("error :", err);
+      res.status(500).send("error deleting data");
+    } else {
+      fetchData();
+      res.status(200).send("data deleted succesfully !");
+    }
   });
 });
 

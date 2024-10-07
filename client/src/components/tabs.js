@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
+import axios from "axios";
 
 const Tabs = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +15,16 @@ const Tabs = () => {
 
   const sortedtasks = [...tasks].sort((a, b) => a.completed - b.completed);
 
+  const delete_data = (id) => {
+    axios
+      .post("http://localhost:3001/delete-data", { id })
+      .then(() => {
+        console.log("success !");
+      })
+      .catch(() => {
+        console.log("error executng request");
+      });
+  };
   const toggleCompletion = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -85,9 +96,12 @@ const Tabs = () => {
             <div className="bg-white rounded-md w-full px-3 py-1">
               <p className="text-xl font-semibold">{task.description}</p>
             </div>
-            <div className="bg-red-700 p-2 rounded-full">
+            <button 
+            onClick={()=> {delete_data(task.id)}}
+            className="bg-red-700 hover:bg-red-600 p-2 rounded-full flex text-white gap-3">
+              <span className="hidden lg:block">delete</span>
               <MdDelete className="text-white text-2xl" />
-            </div>
+            </button>
           </div>
         ))}
       </div>
